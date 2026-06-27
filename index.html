@@ -1,0 +1,2099 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Descomplexo Energético — Danucha Britto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ============================================
+       TOKENS
+    ============================================ */
+      :root {
+        --berinjela-deep: #1c0a2e;
+        --berinjela-mid: #2e1050;
+        --berinjela-light: #4a1f7a;
+        --dourado-primario: #c9a84c;
+        --dourado-suave: #e8d5a0;
+        --branco-velado: #f5f0ff;
+        --footer-bg: #0d0519;
+
+        --max-w: 1100px;
+        --px: clamp(1.5rem, 5vw, 5rem);
+        --section-gap: clamp(5rem, 10vw, 9rem);
+        --radius: 4px;
+      }
+
+      /* ============================================
+       RESET & BASE
+    ============================================ */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 300;
+        background: var(--berinjela-deep);
+        color: var(--branco-velado);
+        line-height: 1.75;
+        overflow-x: hidden;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      ul {
+        list-style: none;
+      }
+
+      /* ============================================
+       TIPOGRAFIA
+    ============================================ */
+      .font-cinzel {
+        font-family: "Cinzel", serif;
+      }
+      h1 {
+        font-family: "Cinzel", serif;
+        font-weight: 600;
+        font-size: clamp(2.2rem, 5vw, 3.8rem);
+        line-height: 1.18;
+      }
+      h2 {
+        font-family: "Cinzel", serif;
+        font-weight: 400;
+        font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+        line-height: 1.25;
+      }
+      h3 {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        font-size: 1.2rem;
+        line-height: 1.4;
+      }
+      p {
+        font-size: 1.05rem;
+        line-height: 1.75;
+      }
+
+      .eyebrow {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        font-size: 0.72rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--dourado-suave);
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      /* ============================================
+       LAYOUT UTILITÁRIOS
+    ============================================ */
+      .container {
+        max-width: var(--max-w);
+        margin: 0 auto;
+        padding-left: var(--px);
+        padding-right: var(--px);
+      }
+      .section {
+        padding-top: var(--section-gap);
+        padding-bottom: var(--section-gap);
+      }
+      .section--mid {
+        background: var(--berinjela-mid);
+      }
+      .section--deep {
+        background: var(--berinjela-deep);
+      }
+      .text-center {
+        text-align: center;
+      }
+      .text-gold {
+        color: var(--dourado-suave);
+      }
+      .text-gold-p {
+        color: var(--dourado-primario);
+      }
+
+      .divider {
+        border: none;
+        border-top: 1px solid var(--dourado-primario);
+        opacity: 0.2;
+        margin: 0;
+      }
+
+      /* ============================================
+       BOTÕES CTA
+    ============================================ */
+      .btn {
+        display: inline-block;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        font-size: 0.95rem;
+        letter-spacing: 0.04em;
+        border-radius: var(--radius);
+        transition:
+          background 0.18s,
+          box-shadow 0.18s,
+          color 0.18s;
+        cursor: pointer;
+      }
+      .btn--gold {
+        background: var(--dourado-primario);
+        color: var(--berinjela-deep);
+        padding: 0.9rem 2.4rem;
+      }
+      .btn--gold:hover {
+        background: #dbbe6a;
+        box-shadow: 0 0 22px rgba(201, 168, 76, 0.45);
+      }
+      .btn--gold-lg {
+        padding: 1.1rem 3rem;
+        font-size: 1.05rem;
+      }
+      .btn--ghost {
+        background: transparent;
+        border: 1px solid var(--dourado-primario);
+        color: var(--dourado-suave);
+        padding: 0.55rem 1.5rem;
+        font-size: 0.85rem;
+      }
+      .btn--ghost:hover {
+        background: rgba(201, 168, 76, 0.1);
+      }
+
+      /* ============================================
+       SCROLL REVEAL
+    ============================================ */
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.65s ease,
+          transform 0.65s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+      }
+
+      /* ============================================
+       00. NAVBAR
+    ============================================ */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 999;
+        background: rgba(28, 10, 46, 0.92);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(201, 168, 76, 0.12);
+      }
+      .navbar__inner {
+        max-width: var(--max-w);
+        margin: 0 auto;
+        padding: 1rem var(--px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .navbar__logo {
+        font-family: "Cinzel", serif;
+        font-weight: 400;
+        font-size: 1rem;
+        color: var(--dourado-suave);
+        letter-spacing: 0.06em;
+      }
+
+      /* ============================================
+       01. HERO
+    ============================================ */
+      .hero {
+        position: relative;
+        background: var(--berinjela-deep);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding-top: clamp(6rem, 12vh, 10rem);
+        padding-bottom: clamp(4rem, 8vh, 7rem);
+        overflow: hidden;
+      }
+      /* Linhas de energia — elemento assinatura */
+      .hero__energy-lines {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .energy-line {
+        position: absolute;
+        width: 200%;
+        height: 1px;
+        background: var(--dourado-primario);
+        opacity: 0.07;
+        transform-origin: left center;
+      }
+      .energy-line:nth-child(1) {
+        top: 18%;
+        transform: rotate(-14deg);
+        animation: drift1 18s ease-in-out infinite alternate;
+      }
+      .energy-line:nth-child(2) {
+        top: 35%;
+        transform: rotate(-8deg);
+        animation: drift2 22s ease-in-out infinite alternate;
+      }
+      .energy-line:nth-child(3) {
+        top: 55%;
+        transform: rotate(-20deg);
+        animation: drift1 26s ease-in-out infinite alternate-reverse;
+      }
+      .energy-line:nth-child(4) {
+        top: 72%;
+        transform: rotate(-5deg);
+        animation: drift2 20s ease-in-out infinite alternate;
+      }
+      .energy-line:nth-child(5) {
+        top: 88%;
+        transform: rotate(-28deg);
+        animation: drift1 24s ease-in-out infinite alternate-reverse;
+      }
+      @keyframes drift1 {
+        from {
+          transform: rotate(-14deg) translateX(-4%);
+        }
+        to {
+          transform: rotate(-14deg) translateX(4%);
+        }
+      }
+      @keyframes drift2 {
+        from {
+          transform: rotate(-8deg) translateX(3%);
+        }
+        to {
+          transform: rotate(-8deg) translateX(-3%);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .energy-line {
+          animation: none;
+        }
+      }
+
+      .hero__grid {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+      .hero__text {
+        max-width: 580px;
+      }
+      .hero__headline {
+        color: var(--branco-velado);
+        margin-bottom: 1.4rem;
+      }
+      .hero__sub {
+        font-size: 1.15rem;
+        font-weight: 300;
+        color: var(--dourado-suave);
+        margin-bottom: 2.2rem;
+        max-width: 480px;
+      }
+      .hero__microtext {
+        margin-top: 1rem;
+        font-size: 0.8rem;
+        color: var(--dourado-suave);
+        opacity: 0.7;
+        letter-spacing: 0.06em;
+      }
+      .hero__image-wrap {
+        position: relative;
+      }
+      .hero__placeholder {
+        width: 100%;
+        aspect-ratio: 3/4;
+        background: var(--berinjela-mid);
+        border: 1px solid rgba(201, 168, 76, 0.18);
+        border-radius: var(--radius);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        color: var(--dourado-suave);
+        font-size: 0.82rem;
+        letter-spacing: 0.08em;
+        text-align: center;
+        padding: 2rem;
+      }
+      .hero__placeholder svg {
+        opacity: 0.4;
+      }
+
+      @media (max-width: 768px) {
+        .hero__grid {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+        .hero__placeholder {
+          aspect-ratio: 4/3;
+          max-height: 340px;
+          object-fit: cover;
+        }
+        .hero__text {
+          max-width: 100%;
+        }
+        .hero__sub {
+          max-width: 100%;
+        }
+      }
+
+      /* ============================================
+       02. STRIP DE CREDIBILIDADE
+    ============================================ */
+      .strip {
+        background: var(--berinjela-mid);
+        border-top: 1px solid rgba(201, 168, 76, 0.15);
+        border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+        padding: 1.1rem 0;
+        overflow: hidden;
+      }
+      .strip__track {
+        display: flex;
+        gap: 3.5rem;
+        white-space: nowrap;
+        animation: marquee 38s linear infinite;
+      }
+      .strip__item {
+        font-size: 0.78rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--dourado-suave);
+        flex-shrink: 0;
+      }
+      .strip__sep {
+        color: var(--dourado-primario);
+        opacity: 0.5;
+      }
+      @keyframes marquee {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .strip__track {
+          animation: none;
+          flex-wrap: wrap;
+          white-space: normal;
+          justify-content: center;
+        }
+      }
+
+      /* ============================================
+       03. DOR
+    ============================================ */
+      .pain__header {
+        text-align: center;
+        margin-bottom: 3.5rem;
+      }
+      .pain__header h2 {
+        margin-top: 0.5rem;
+      }
+      .pain__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+      }
+      .pain__card {
+        background: var(--berinjela-mid);
+        border-left: 3px solid var(--berinjela-light);
+        border-radius: var(--radius);
+        padding: 2rem;
+        transition: border-left-color 0.25s;
+      }
+      .pain__card:hover {
+        border-left-color: var(--dourado-primario);
+      }
+      .pain__card svg {
+        margin-bottom: 1.1rem;
+      }
+      .pain__card p {
+        font-size: 1rem;
+        color: var(--branco-velado);
+      }
+      .pain__close {
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto;
+        font-size: 1.1rem;
+        color: var(--dourado-suave);
+      }
+      @media (max-width: 768px) {
+        .pain__grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ============================================
+       04. AGITAÇÃO
+    ============================================ */
+      .agitation {
+        text-align: center;
+      }
+      .agitation__quote {
+        font-family: "Cinzel", serif;
+        font-weight: 400;
+        font-size: clamp(1.5rem, 3vw, 2.2rem);
+        color: var(--dourado-suave);
+        line-height: 1.45;
+        max-width: 780px;
+        margin: 0 auto 2.5rem;
+      }
+      .agitation__text {
+        max-width: 680px;
+        margin: 0 auto;
+        color: var(--branco-velado);
+        opacity: 0.85;
+      }
+      .agitation__text p + p {
+        margin-top: 1.2rem;
+      }
+      .agitation__text strong {
+        color: var(--dourado-suave);
+        font-weight: 600;
+      }
+
+      /* ============================================
+       05. MÉTODO / SOLUÇÃO
+    ============================================ */
+      .method__header {
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+      .method__sub {
+        text-align: center;
+        max-width: 680px;
+        margin: 1rem auto 3.5rem;
+        font-size: 1rem;
+        color: var(--dourado-suave);
+      }
+      .method__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+      }
+      .method__step {
+        padding: 2rem 2.2rem;
+        border-bottom: 1px dashed rgba(201, 168, 76, 0.25);
+      }
+      .method__step:nth-child(odd) {
+        border-right: 1px dashed rgba(201, 168, 76, 0.25);
+      }
+      .method__step:nth-last-child(-n + 2) {
+        border-bottom: none;
+      }
+      .method__num {
+        font-family: "Cinzel", serif;
+        font-size: 0.8rem;
+        color: var(--dourado-primario);
+        letter-spacing: 0.12em;
+        margin-bottom: 0.6rem;
+      }
+      .method__step h3 {
+        color: var(--branco-velado);
+        margin-bottom: 0.6rem;
+      }
+      .method__step p {
+        color: var(--dourado-suave);
+        font-size: 0.97rem;
+      }
+      @media (max-width: 768px) {
+        .method__grid {
+          grid-template-columns: 1fr;
+        }
+        .method__step:nth-child(odd) {
+          border-right: none;
+        }
+        .method__step {
+          border-bottom: 1px dashed rgba(201, 168, 76, 0.25) !important;
+        }
+        .method__step:last-child {
+          border-bottom: none !important;
+        }
+      }
+
+      /* ============================================
+       06. BIOGRAFIA
+    ============================================ */
+      .bio__grid {
+        display: grid;
+        grid-template-columns: 1fr 1.55fr;
+        gap: 4rem;
+        align-items: start;
+      }
+      .bio__image-wrap {
+        position: relative;
+      }
+      .bio__placeholder {
+        width: 100%;
+        aspect-ratio: 3/4;
+        background: var(--berinjela-deep);
+        border: 1px solid rgba(201, 168, 76, 0.18);
+        border-radius: var(--radius);
+        box-shadow: 5px 5px 0 var(--dourado-primario);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        color: var(--dourado-suave);
+        font-size: 0.82rem;
+        letter-spacing: 0.08em;
+        text-align: center;
+        padding: 2rem;
+      }
+      .bio__placeholder svg {
+        opacity: 0.4;
+      }
+      .bio__text-header {
+        margin-bottom: 0.3rem;
+      }
+      .bio__subtitle {
+        font-size: 0.9rem;
+        color: var(--dourado-suave);
+        margin-bottom: 1.8rem;
+        opacity: 0.8;
+        letter-spacing: 0.04em;
+      }
+      .bio__paras p {
+        color: var(--branco-velado);
+        font-size: 1rem;
+      }
+      .bio__paras p + p {
+        margin-top: 1.1rem;
+      }
+      .bio__quote {
+        border-left: 4px solid var(--dourado-primario);
+        padding: 1rem 0 1rem 1.5rem;
+        margin: 2rem 0;
+      }
+      .bio__quote p {
+        font-family: "Cinzel", serif;
+        font-style: italic;
+        color: var(--dourado-suave);
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+      .bio__quote cite {
+        display: block;
+        margin-top: 0.7rem;
+        font-size: 0.82rem;
+        font-style: normal;
+        color: var(--dourado-suave);
+        opacity: 0.6;
+        letter-spacing: 0.08em;
+      }
+      .bio__credentials {
+        margin-top: 1.5rem;
+      }
+      .bio__credentials li {
+        font-size: 0.95rem;
+        color: var(--branco-velado);
+        padding: 0.45rem 0;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+        display: flex;
+        gap: 0.75rem;
+      }
+      .bio__credentials li::before {
+        content: "—";
+        color: var(--dourado-primario);
+        flex-shrink: 0;
+      }
+      @media (max-width: 768px) {
+        .bio__grid {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+        .bio__placeholder {
+          aspect-ratio: 4/3;
+        }
+      }
+
+      /* ============================================
+       07. TRANSFORMAÇÕES
+    ============================================ */
+      .results__header {
+        text-align: center;
+        margin-bottom: 3.5rem;
+      }
+      .results__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+      }
+      .results__item {
+        text-align: left;
+      }
+      .results__icon {
+        margin-bottom: 1rem;
+      }
+      .results__item h3 {
+        color: var(--dourado-suave);
+        margin-bottom: 0.5rem;
+        font-size: 1.05rem;
+      }
+      .results__item p {
+        font-size: 0.95rem;
+        color: var(--branco-velado);
+        opacity: 0.8;
+      }
+      @media (max-width: 768px) {
+        .results__grid {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+      }
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .results__grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      /* ============================================
+       08. BÔNUS
+    ============================================ */
+      .bonus__header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+      .bonus__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+      }
+      .bonus__card {
+        background: var(--berinjela-deep);
+        border-top: 2px solid var(--dourado-primario);
+        border-radius: var(--radius);
+        padding: 2.5rem;
+      }
+      .bonus__card svg {
+        margin-bottom: 1.2rem;
+      }
+      .bonus__card h3 {
+        color: var(--branco-velado);
+        margin-bottom: 0.7rem;
+      }
+      .bonus__card p {
+        font-size: 0.97rem;
+        color: var(--dourado-suave);
+        margin-bottom: 1.5rem;
+      }
+      .bonus__img-ph {
+        width: 100%;
+        height: 160px;
+        background: var(--berinjela-mid);
+        border: 1px dashed rgba(201, 168, 76, 0.3);
+        border-radius: var(--radius);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.78rem;
+        letter-spacing: 0.1em;
+        color: var(--dourado-suave);
+        opacity: 0.6;
+        text-align: center;
+        padding: 1rem;
+      }
+      .bonus__cta {
+        text-align: center;
+      }
+      @media (max-width: 768px) {
+        .bonus__grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ============================================
+       09. DEPOIMENTOS
+    ============================================ */
+      .testimonials__header {
+        text-align: center;
+        margin-bottom: 2.5rem;
+      }
+      .testimonials__tabs {
+        display: flex;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-bottom: 3rem;
+      }
+      .tab-btn {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
+        padding: 0.55rem 1.6rem;
+        border-radius: 50px;
+        border: 1px solid var(--dourado-primario);
+        background: transparent;
+        color: var(--dourado-suave);
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .tab-btn.active,
+      .tab-btn:hover {
+        background: var(--dourado-primario);
+        color: var(--berinjela-deep);
+      }
+      .tab-panel {
+        display: none;
+      }
+      .tab-panel.active {
+        display: block;
+        animation: fadeIn 0.35s ease;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Aba Texto */
+      .testi-text-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+      .testi-card {
+        background: var(--berinjela-mid);
+        border-radius: var(--radius);
+        padding: 2rem;
+      }
+      .testi-card__name {
+        font-weight: 600;
+        color: var(--dourado-suave);
+        font-size: 0.95rem;
+        margin-bottom: 0.2rem;
+      }
+      .testi-card__role {
+        font-size: 0.82rem;
+        color: var(--branco-velado);
+        opacity: 0.6;
+        margin-bottom: 1rem;
+      }
+      .testi-card__text {
+        font-size: 0.97rem;
+        color: var(--branco-velado);
+        font-style: italic;
+        opacity: 0.9;
+      }
+
+      /* Aba Fotos */
+      .testi-photo-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+      .testi-photo-item {
+        position: relative;
+        aspect-ratio: 4/5;
+        background: var(--berinjela-mid);
+        border: 1px dashed rgba(201, 168, 76, 0.3);
+        border-radius: var(--radius);
+        overflow: hidden;
+        cursor: pointer;
+      }
+      .testi-photo-item__overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(28, 10, 46, 0.8);
+        backdrop-filter: blur(2px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        opacity: 0;
+        transition: opacity 0.25s;
+        padding: 1.5rem;
+        text-align: center;
+      }
+      .testi-photo-item:hover .testi-photo-item__overlay {
+        opacity: 1;
+      }
+      .testi-photo-item__ph {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.78rem;
+        letter-spacing: 0.1em;
+        color: var(--dourado-suave);
+        opacity: 0.5;
+        text-align: center;
+        padding: 1rem;
+      }
+      .testi-photo-item__name {
+        font-weight: 600;
+        color: var(--dourado-suave);
+        font-size: 0.9rem;
+      }
+      .testi-photo-item__quote {
+        font-size: 0.82rem;
+        color: var(--branco-velado);
+        font-style: italic;
+      }
+
+      /* Aba Vídeos */
+      .testi-video-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+      .testi-video-item {
+        aspect-ratio: 16/9;
+        background: var(--berinjela-mid);
+        border: 1px dashed rgba(201, 168, 76, 0.3);
+        border-radius: var(--radius);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: background 0.2s;
+      }
+      .testi-video-item:hover {
+        background: rgba(201, 168, 76, 0.08);
+      }
+      .testi-video-item__play {
+        width: 52px;
+        height: 52px;
+        border: 2px solid var(--dourado-primario);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.2s;
+      }
+      .testi-video-item:hover .testi-video-item__play {
+        transform: scale(1.1);
+      }
+      .testi-video-item__label {
+        font-size: 0.8rem;
+        color: var(--dourado-suave);
+        letter-spacing: 0.06em;
+        text-align: center;
+        padding: 0 1rem;
+      }
+
+      @media (max-width: 768px) {
+        .testi-text-grid,
+        .testi-photo-grid,
+        .testi-video-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .testi-text-grid,
+        .testi-photo-grid,
+        .testi-video-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      /* ============================================
+       10. GARANTIA
+    ============================================ */
+      .guarantee {
+        text-align: center;
+      }
+      .guarantee__inner {
+        max-width: 660px;
+        margin: 0 auto;
+      }
+      .guarantee__icon {
+        margin: 0 auto 1.5rem;
+      }
+      .guarantee__inner h2 {
+        margin-bottom: 1.3rem;
+      }
+      .guarantee__inner p {
+        color: var(--branco-velado);
+        opacity: 0.85;
+      }
+      .guarantee__inner p + p {
+        margin-top: 1rem;
+      }
+      .guarantee__inner strong {
+        color: var(--dourado-suave);
+        font-weight: 600;
+      }
+
+      /* ============================================
+       11. CTA FINAL
+    ============================================ */
+      .cta-final {
+        text-align: center;
+        padding-top: clamp(5rem, 10vh, 8rem);
+        padding-bottom: clamp(5rem, 10vh, 8rem);
+      }
+      .cta-final h2 {
+        max-width: 800px;
+        margin: 0 auto 1.5rem;
+        color: var(--dourado-suave);
+      }
+      .cta-final__sub {
+        max-width: 620px;
+        margin: 0 auto 2.5rem;
+        font-size: 1.1rem;
+        color: var(--branco-velado);
+        opacity: 0.85;
+      }
+      .cta-final__micro {
+        margin-top: 1.1rem;
+        font-size: 0.78rem;
+        letter-spacing: 0.12em;
+        color: var(--dourado-suave);
+        opacity: 0.55;
+        text-transform: uppercase;
+      }
+
+      /* ============================================
+       12. FOOTER
+    ============================================ */
+      .footer {
+        background: var(--footer-bg);
+        border-top: 1px solid rgba(201, 168, 76, 0.28);
+        padding: 3rem var(--px) 1.5rem;
+      }
+      .footer__inner {
+        max-width: var(--max-w);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        align-items: center;
+        gap: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+        margin-bottom: 1.5rem;
+      }
+      .footer__brand span:first-child {
+        font-family: "Cinzel", serif;
+        font-weight: 400;
+        font-size: 1rem;
+        color: var(--dourado-suave);
+        display: block;
+        letter-spacing: 0.06em;
+      }
+      .footer__brand span:last-child {
+        font-size: 0.82rem;
+        color: var(--dourado-suave);
+        opacity: 0.55;
+        letter-spacing: 0.08em;
+      }
+      .footer__social {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+      }
+      .footer__social a {
+        color: var(--dourado-suave);
+        opacity: 0.65;
+        transition: opacity 0.2s;
+      }
+      .footer__social a:hover {
+        opacity: 1;
+      }
+      .footer__dev {
+        text-align: right;
+        font-size: 0.75rem;
+        color: var(--branco-velado);
+        opacity: 1;
+        letter-spacing: 0.06em;
+      }
+
+      .footer__dev a {
+        color: var(--dourado-suave);
+        opacity: 0.5;
+      }
+
+      .footer__dev a:hover {
+        color: var(--dourado-primario);
+        opacity: 1;
+        text-decoration: underline;
+      }
+      .footer__copy {
+        max-width: var(--max-w);
+        margin: 0 auto;
+        font-size: 0.75rem;
+        color: var(--dourado-suave);
+        opacity: 0.3;
+        text-align: center;
+        letter-spacing: 0.08em;
+      }
+      @media (max-width: 768px) {
+        .footer__inner {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        .footer__dev {
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ====== 00. NAVBAR ====== -->
+    <nav class="navbar" aria-label="Navegação principal">
+      <div class="navbar__inner">
+        <span class="navbar__logo">Danucha Britto</span>
+        <a href="#aplicacao" class="btn btn--ghost"
+          >Quero conhecer o método →</a
+        >
+      </div>
+    </nav>
+
+    <!-- ====== 01. HERO ====== -->
+    <section class="hero" aria-label="Apresentação">
+      <div class="hero__energy-lines" aria-hidden="true">
+        <div class="energy-line"></div>
+        <div class="energy-line"></div>
+        <div class="energy-line"></div>
+        <div class="energy-line"></div>
+        <div class="energy-line"></div>
+      </div>
+      <div class="container">
+        <div class="hero__grid">
+          <div class="hero__text reveal">
+            <span class="eyebrow"
+              >Tecnologias do Espírito · Diagnóstico Energético</span
+            >
+            <h1 class="hero__headline">
+              Terapeuta do futuro não se limita só à mente do paciente.
+            </h1>
+            <p class="hero__sub">
+              Aprenda a ler o campo energético e o subconsciente em até 90
+              minutos — com método, sem mediunidade, sem mistério.
+            </p>
+            <a href="#aplicacao" class="btn btn--gold"
+              >Quero acessar o método</a
+            >
+            <p class="hero__microtext">
+              6 meses · Mentoria híbrida · Vagas limitadas
+            </p>
+          </div>
+          <div class="hero__image-wrap reveal" style="transition-delay: 0.15s">
+            <img
+              src="/fotos/foto-danucha (1).PNG"
+              aria-label="Espaço reservado para foto de Danucha Britto"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== 03. DOR ====== -->
+    <section
+      class="section section--deep"
+      id="dor"
+      aria-labelledby="pain-heading"
+    >
+      <div class="container">
+        <div class="pain__header">
+          <span class="eyebrow reveal">Você já sentiu isso?</span>
+          <h2 id="pain-heading" class="reveal">
+            Você sabe que existe algo mais profundo.<br />Mas ainda não sabe
+            como acessar.
+          </h2>
+        </div>
+        <div class="pain__grid">
+          <article class="pain__card reveal">
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--dourado-suave)"
+              stroke-width="1.2"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <circle cx="12" cy="12" r="3" />
+              <line x1="12" y1="2" x2="12" y2="5" />
+              <line x1="12" y1="19" x2="12" y2="22" />
+              <line x1="2" y1="12" x2="5" y2="12" />
+              <line x1="19" y1="12" x2="22" y2="12" />
+            </svg>
+            <p>
+              Você percebe padrões no paciente que as técnicas atuais não
+              alcançam — mas não tem um mapa para trabalhar com isso.
+            </p>
+          </article>
+
+          <article class="pain__card reveal" style="transition-delay: 0.1s">
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--dourado-suave)"
+              stroke-width="1.2"
+              aria-hidden="true"
+            >
+              <rect x="2" y="3" width="20" height="4" rx="1" />
+              <rect x="2" y="10" width="20" height="4" rx="1" />
+              <rect x="2" y="17" width="20" height="4" rx="1" />
+            </svg>
+            <p>
+              Fez vários cursos, cada um com sua linguagem. Na hora do
+              atendimento, não sabe como integrar tudo em uma única sessão
+              coerente.
+            </p>
+          </article>
+
+          <article class="pain__card reveal" style="transition-delay: 0.2s">
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--dourado-suave)"
+              stroke-width="1.2"
+              aria-hidden="true"
+            >
+              <rect x="3" y="11" width="18" height="11" rx="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+            <p>
+              Acredita que acessar o campo energético exige dom ou mediunidade —
+              e isso te faz subestimar o que você já é capaz de fazer.
+            </p>
+          </article>
+        </div>
+        <p class="pain__close reveal">
+          E não é falta de competência. É falta de um método que torne o
+          invisível legível — e o intangível, praticável.
+        </p>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ====== 04. AGITAÇÃO ====== -->
+    <section
+      class="section section--mid agitation"
+      aria-labelledby="agitation-heading"
+    >
+      <div class="container">
+        <h2 id="agitation-heading" class="agitation__quote reveal">
+          Enquanto você busca mais um curso,<br />
+          o seu paciente continua esperando<br />
+          uma transformação que você já poderia entregar.
+        </h2>
+        <div class="agitation__text reveal">
+          <p>
+            O mercado terapêutico está saturado de profissionais competentes que
+            oferecem sessões avulsas sem profundidade diagnóstica. A diferença
+            entre quem é buscado e quem é indicado está em uma coisa: a
+            capacidade de ler o que não está sendo dito — e trabalhar com isso
+            com precisão e ética.
+          </p>
+          <p>
+            <strong
+              >Esse é o terapeuta que cobra mais. Que transforma mais. Que retém
+              mais.</strong
+            >
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ====== 05. MÉTODO ====== -->
+    <section
+      class="section section--deep"
+      id="metodo"
+      aria-labelledby="method-heading"
+    >
+      <div class="container">
+        <div class="method__header">
+          <span class="eyebrow reveal">O Descomplexo Energético</span>
+          <h2 id="method-heading" class="reveal">
+            Um diagnóstico profundo. Uma sessão integrada. Seis etapas.
+          </h2>
+        </div>
+        <p class="method__sub reveal">
+          Você vai aprender a conduzir um atendimento onde o paciente é ativo em
+          todo o processo — e onde cada etapa revela uma camada mais profunda do
+          campo energético e subconsciente.
+        </p>
+
+        <div class="method__grid reveal">
+          <div class="method__step">
+            <p class="method__num">Etapa 01</p>
+            <h3>Leitura de Campo</h3>
+            <p>
+              Antes de qualquer intervenção, você aprende a perceber e mapear o
+              campo energético do paciente com referências objetivas — não
+              intuição aleatória.
+            </p>
+          </div>
+          <div class="method__step">
+            <p class="method__num">Etapa 02</p>
+            <h3>Escuta Subconsciente</h3>
+            <p>
+              Técnicas de leitura corporal e de padrões de linguagem que acessam
+              o que o consciente do paciente não consegue articular.
+            </p>
+          </div>
+          <div class="method__step">
+            <p class="method__num">Etapa 03</p>
+            <h3>Diagnóstico Integrado</h3>
+            <p>
+              A convergência entre o que o corpo comunica, o que o campo revela
+              e o que a história do paciente registra — tudo em uma única
+              leitura coesa.
+            </p>
+          </div>
+          <div class="method__step">
+            <p class="method__num">Etapa 04</p>
+            <h3>Mapa de Intervenção</h3>
+            <p>
+              Com o diagnóstico em mãos, você define quais camadas precisam ser
+              tocadas e em qual ordem — sem improviso, sem tentativa e erro.
+            </p>
+          </div>
+          <div class="method__step">
+            <p class="method__num">Etapa 05</p>
+            <h3>Ativação do Paciente</h3>
+            <p>
+              O paciente não é receptor passivo. Você aprende a envolvê-lo no
+              processo de forma que a transformação seja dele — e não apenas
+              provocada por você.
+            </p>
+          </div>
+          <div class="method__step">
+            <p class="method__num">Etapa 06</p>
+            <h3>Fechamento e Ancoragem</h3>
+            <p>
+              Cada sessão termina com um estado de reorganização energética que
+              o paciente percebe. Isso é o que gera indicação espontânea — e
+              fidelização.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ====== 06. BIOGRAFIA ====== -->
+    <section
+      class="section section--mid"
+      id="danucha"
+      aria-labelledby="bio-heading"
+    >
+      <div class="container">
+        <div class="bio__grid">
+          <div class="bio__image-wrap reveal">
+            <img
+              src="./fotos/foto-danucha (2).jpeg"
+              aria-label="Espaço reservado para foto de perfil de Danucha Britto"
+            />
+          </div>
+          <div class="bio__content reveal" style="transition-delay: 0.12s">
+            <span class="eyebrow">Quem criou o método</span>
+            <h2 id="bio-heading" class="bio__text-header">Danucha Britto</h2>
+            <p class="bio__subtitle">
+              Especialista em Tecnologias do Espírito · Terapeuta Corporal
+            </p>
+            <div class="bio__paras">
+              <p>
+                Baiana. Formada em Biologia e em Direito. Mais de 30 anos
+                circulando entre tradições espirituais — não como crente devota,
+                mas como pesquisadora incansável de padrões humanos.
+              </p>
+              <p>
+                Danucha atuou em projetos sociais em presídios, academias de
+                ginástica e ambientes que pouquíssimos terapeutas frequentam.
+                Morou em diferentes países. E foi no ápice do estranhamento —
+                sem idioma, sem referência, sem a armadura que a identidade
+                constrói — que algo inesperado aconteceu.
+              </p>
+              <p>
+                No silêncio de quem não entende e não é entendido, a
+                espiritualidade deixou de ser mística. Virou estrutura. Virou
+                método. Virou tecnologia.
+              </p>
+              <p>
+                Foi nesse vazio que ela desenvolveu a Tecnologia de Diagnóstico
+                Energético — um sistema que qualquer terapeuta treinado pode
+                aprender, aplicar e dominar. Sem dom. Sem herança mediúnica. Sem
+                precisar acreditar antes de ver.
+              </p>
+            </div>
+            <blockquote class="bio__quote">
+              <p>
+                "Sem dom médico, sem misticismo. Espiritualidade é tecnologia e
+                qualquer terapeuta pode dominá-la."
+              </p>
+              <cite>— Danucha Britto</cite>
+            </blockquote>
+            <ul
+              class="bio__credentials"
+              aria-label="Credenciais de Danucha Britto"
+            >
+              <li>Formada em Biologia e Direito</li>
+              <li>
+                Mais de 30 anos de imersão em religiões e tradições espirituais
+              </li>
+              <li>
+                Atuação em projetos sociais, presídios e contextos de alta
+                vulnerabilidade
+              </li>
+              <li>Criadora da Tecnologia de Diagnóstico Energético</li>
+              <li>
+                Especialista em Terapias Corporais e Tecnologias do Espírito
+              </li>
+              <li>Experiência internacional em múltiplos países e culturas</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ====== 07. TRANSFORMAÇÕES ====== -->
+    <section class="section section--deep" aria-labelledby="results-heading">
+      <div class="container">
+        <div class="results__header">
+          <span class="eyebrow reveal">Ao final dos 6 meses</span>
+          <h2 id="results-heading" class="reveal">
+            O que muda no seu atendimento.
+          </h2>
+        </div>
+        <div class="results__grid">
+          <div class="results__item reveal">
+            <div class="results__icon">
+              <svg
+                width="36"
+                height="36"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="var(--dourado-primario)"
+                stroke-width="1.2"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </div>
+            <h3>Diagnóstico preciso em até 90 minutos</h3>
+            <p>
+              Você conduz uma leitura completa do campo energético e
+              subconsciente sem improvisar — com um roteiro claro, replicável e
+              escalável.
+            </p>
+          </div>
+
+          <div class="results__item reveal" style="transition-delay: 0.08s">
+            <div class="results__icon">
+              <svg
+                width="36"
+                height="36"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="var(--dourado-primario)"
+                stroke-width="1.2"
+                aria-hidden="true"
+              >
+                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                <path d="M2 17l10 5 10-5" />
+                <path d="M2 12l10 5 10-5" />
+              </svg>
+            </div>
+            <h3>Atendimento integrado e único</h3>
+            <p>
+              Não mais técnicas isoladas. Uma sessão com começo, meio e fim —
+              que trabalha múltiplas camadas de forma coesa.
+            </p>
+          </div>
+
+          <div class="results__item reveal" style="transition-delay: 0.16s">
+            <div class="results__icon">
+              <svg
+                width="36"
+                height="36"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="var(--dourado-primario)"
+                stroke-width="1.2"
+                aria-hidden="true"
+              >
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+            </div>
+            <h3>Paciente ativo e comprometido</h3>
+            <p>
+              A transformação não depende só de você. O método posiciona o
+              paciente como protagonista — o que acelera os resultados e aumenta
+              a adesão.
+            </p>
+          </div>
+
+          <div class="results__item reveal">
+            <div class="results__icon">
+              <svg
+                width="36"
+                height="36"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="var(--dourado-primario)"
+                stroke-width="1.2"
+                aria-hidden="true"
+              >
+                <line x1="12" y1="1" x2="12" y2="23" />
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+              </svg>
+            </div>
+            <h3>Cobrança de alto valor justificada</h3>
+            <p>
+              Quando o paciente percebe a profundidade do diagnóstico, o valor
+              da sessão não é questionado. É reconhecido.
+            </p>
+          </div>
+
+          <div class="results__item reveal" style="transition-delay: 0.08s">
+            <div class="results__icon">
+              <svg
+                width="36"
+                height="36"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="var(--dourado-primario)"
+                stroke-width="1.2"
+                aria-hidden="true"
+              >
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                />
+              </svg>
+            </div>
+            <h3>Diferenciação real de mercado</h3>
+            <p>
+              Você deixa de competir no preço e começa a competir na
+              profundidade. Não há comparação direta possível.
+            </p>
+          </div>
+
+          <div class="results__item reveal" style="transition-delay: 0.16s">
+            <div class="results__icon">
+              <svg
+                width="36"
+                height="36"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="var(--dourado-primario)"
+                stroke-width="1.2"
+                aria-hidden="true"
+              >
+                <circle cx="18" cy="18" r="3" />
+                <circle cx="6" cy="6" r="3" />
+                <path d="M13 6h3a2 2 0 0 1 2 2v7" />
+                <line x1="6" y1="9" x2="6" y2="21" />
+              </svg>
+            </div>
+            <h3>Referência no campo integrativo</h3>
+            <p>
+              Terapeutas que dominam diagnóstico energético são raros. Você se
+              torna o profissional que outros indicam quando o caso exige mais.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ====== 08. BÔNUS ====== -->
+    <section class="section section--mid" aria-labelledby="bonus-heading">
+      <div class="container">
+        <div class="bonus__header">
+          <span class="eyebrow reveal">Incluído na mentoria</span>
+          <h2 id="bonus-heading" class="reveal">
+            Dois bônus que completam a prática.
+          </h2>
+        </div>
+        <div class="bonus__grid">
+          <article class="bonus__card reveal">
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--dourado-primario)"
+              stroke-width="1.2"
+              aria-hidden="true"
+            >
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+            </svg>
+            <span class="eyebrow">Bônus 01</span>
+            <h3>E-book de Limpeza Energética</h3>
+            <p>
+              Um guia prático e fundamentado para você incorporar protocolos de
+              limpeza energética no seu atendimento — com linguagem técnica e
+              aplicação imediata, sem rituais descontextualizados.
+            </p>
+          </article>
+
+          <article class="bonus__card reveal" style="transition-delay: 0.1s">
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--dourado-primario)"
+              stroke-width="1.2"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 8v8" />
+              <path d="M8 12h8" />
+            </svg>
+            <span class="eyebrow">Bônus 02</span>
+            <h3>Aula: Ancoramento e Ativação do Portal Energético</h3>
+            <p>
+              Uma aula imersiva sobre o ponto de conexão entre o campo humano e
+              o Criador — com técnica de ancoramento aplicável ao final de cada
+              sessão, potencializando os efeitos do atendimento.
+            </p>
+          </article>
+        </div>
+        <div class="bonus__cta reveal">
+          <a href="#aplicacao" class="btn btn--gold"
+            >Quero me candidatar ao Descomplexo Energético</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ====== 09. DEPOIMENTOS ====== -->
+    <section
+      class="section section--deep"
+      id="depoimentos"
+      aria-labelledby="testi-heading"
+    >
+      <div class="container">
+        <div class="testimonials__header">
+          <span class="eyebrow reveal">Quem já passou pelo método</span>
+          <h2 id="testi-heading" class="reveal">
+            Terapeutas que aprenderam a ler o que não é dito.
+          </h2>
+        </div>
+
+        <div
+          class="testimonials__tabs"
+          role="tablist"
+          aria-label="Formato dos depoimentos"
+        >
+          <button
+            class="tab-btn active"
+            role="tab"
+            aria-selected="true"
+            aria-controls="tab-texto"
+            id="btn-texto"
+            onclick="switchTab('texto')"
+          >
+            Texto
+          </button>
+          <button
+            class="tab-btn"
+            role="tab"
+            aria-selected="false"
+            aria-controls="tab-fotos"
+            id="btn-fotos"
+            onclick="switchTab('fotos')"
+          >
+            Fotos
+          </button>
+          <button
+            class="tab-btn"
+            role="tab"
+            aria-selected="false"
+            aria-controls="tab-videos"
+            id="btn-videos"
+            onclick="switchTab('videos')"
+          >
+            Vídeos
+          </button>
+        </div>
+
+        <!-- Aba Texto -->
+        <div
+          id="tab-texto"
+          class="tab-panel active"
+          role="tabpanel"
+          aria-labelledby="btn-texto"
+        >
+          <div class="testi-text-grid">
+            <article class="testi-card">
+              <p class="testi-card__name">[Nome do Aluno]</p>
+              <p class="testi-card__role">[Especialidade / Cidade]</p>
+              <p class="testi-card__text">
+                "[Texto do depoimento — substitua pelo depoimento real do
+                aluno]"
+              </p>
+            </article>
+            <article class="testi-card">
+              <p class="testi-card__name">[Nome do Aluno]</p>
+              <p class="testi-card__role">[Especialidade / Cidade]</p>
+              <p class="testi-card__text">
+                "[Texto do depoimento — substitua pelo depoimento real do
+                aluno]"
+              </p>
+            </article>
+            <article class="testi-card">
+              <p class="testi-card__name">[Nome do Aluno]</p>
+              <p class="testi-card__role">[Especialidade / Cidade]</p>
+              <p class="testi-card__text">
+                "[Texto do depoimento — substitua pelo depoimento real do
+                aluno]"
+              </p>
+            </article>
+          </div>
+        </div>
+
+        <!-- Aba Fotos -->
+        <div
+          id="tab-fotos"
+          class="tab-panel"
+          role="tabpanel"
+          aria-labelledby="btn-fotos"
+        >
+          <div class="testi-photo-grid">
+            <div class="testi-photo-item">
+              <div class="testi-photo-item__ph">
+                FOTO PLACEHOLDER<br />[Nome] — [Especialidade]
+              </div>
+              <div class="testi-photo-item__overlay">
+                <p class="testi-photo-item__name">[Nome do Aluno]</p>
+                <p class="testi-photo-item__quote">
+                  "[Trecho curto do depoimento]"
+                </p>
+              </div>
+            </div>
+            <div class="testi-photo-item">
+              <div class="testi-photo-item__ph">
+                FOTO PLACEHOLDER<br />[Nome] — [Especialidade]
+              </div>
+              <div class="testi-photo-item__overlay">
+                <p class="testi-photo-item__name">[Nome do Aluno]</p>
+                <p class="testi-photo-item__quote">
+                  "[Trecho curto do depoimento]"
+                </p>
+              </div>
+            </div>
+            <div class="testi-photo-item">
+              <div class="testi-photo-item__ph">
+                FOTO PLACEHOLDER<br />[Nome] — [Especialidade]
+              </div>
+              <div class="testi-photo-item__overlay">
+                <p class="testi-photo-item__name">[Nome do Aluno]</p>
+                <p class="testi-photo-item__quote">
+                  "[Trecho curto do depoimento]"
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Aba Vídeos -->
+        <div
+          id="tab-videos"
+          class="tab-panel"
+          role="tabpanel"
+          aria-labelledby="btn-videos"
+        >
+          <div class="testi-video-grid">
+            <div
+              class="testi-video-item"
+              onclick="openVideoModal('LINK_YOUTUBE_1')"
+              role="button"
+              tabindex="0"
+              aria-label="Depoimento em vídeo — Aluno 1"
+            >
+              <div class="testi-video-item__play">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="var(--dourado-primario)"
+                  aria-hidden="true"
+                >
+                  <polygon points="5 3 19 12 5 21 5 3" />
+                </svg>
+              </div>
+              <p class="testi-video-item__label">
+                VIDEO PLACEHOLDER<br />[Nome do Aluno]
+              </p>
+            </div>
+            <div
+              class="testi-video-item"
+              onclick="openVideoModal('LINK_YOUTUBE_2')"
+              role="button"
+              tabindex="0"
+              aria-label="Depoimento em vídeo — Aluno 2"
+            >
+              <div class="testi-video-item__play">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="var(--dourado-primario)"
+                  aria-hidden="true"
+                >
+                  <polygon points="5 3 19 12 5 21 5 3" />
+                </svg>
+              </div>
+              <p class="testi-video-item__label">
+                VIDEO PLACEHOLDER<br />[Nome do Aluno]
+              </p>
+            </div>
+            <div
+              class="testi-video-item"
+              onclick="openVideoModal('LINK_YOUTUBE_3')"
+              role="button"
+              tabindex="0"
+              aria-label="Depoimento em vídeo — Aluno 3"
+            >
+              <div class="testi-video-item__play">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="var(--dourado-primario)"
+                  aria-hidden="true"
+                >
+                  <polygon points="5 3 19 12 5 21 5 3" />
+                </svg>
+              </div>
+              <p class="testi-video-item__label">
+                VIDEO PLACEHOLDER<br />[Nome do Aluno]
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal de vídeo -->
+    <div
+      id="video-modal"
+      style="
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 2000;
+        background: rgba(13, 5, 25, 0.92);
+        align-items: center;
+        justify-content: center;
+      "
+      onclick="closeVideoModal()"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Depoimento em vídeo"
+    >
+      <div
+        style="position: relative; width: min(860px, 90vw); aspect-ratio: 16/9"
+        onclick="event.stopPropagation()"
+      >
+        <iframe
+          id="video-iframe"
+          src=""
+          frameborder="0"
+          allow="autoplay; encrypted-media"
+          allowfullscreen
+          style="width: 100%; height: 100%; border-radius: 4px"
+          title="Depoimento em vídeo"
+        ></iframe>
+        <button
+          onclick="closeVideoModal()"
+          style="
+            position: absolute;
+            top: -2.5rem;
+            right: 0;
+            background: none;
+            border: none;
+            color: var(--dourado-suave);
+            font-size: 1.5rem;
+            cursor: pointer;
+            font-family: Montserrat, sans-serif;
+          "
+          aria-label="Fechar vídeo"
+        >
+          ✕
+        </button>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- ====== 10. GARANTIA ====== -->
+    <section
+      class="section section--mid guarantee"
+      aria-labelledby="guarantee-heading"
+    >
+      <div class="container">
+        <div class="guarantee__inner">
+          <div class="guarantee__icon reveal">
+            <svg
+              width="64"
+              height="64"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--dourado-suave)"
+              stroke-width="1"
+              aria-hidden="true"
+            >
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              <polyline points="9 12 11 14 15 10" />
+            </svg>
+          </div>
+          <h2 id="guarantee-heading" class="reveal">
+            7 dias de garantia incondicional.
+          </h2>
+          <p class="reveal">
+            Se nos primeiros 7 dias você decidir que o Descomplexo Energético
+            não é para você — por qualquer razão, sem precisar justificar —
+            devolvemos 100% do seu investimento. Sem burocracia. Sem julgamento.
+          </p>
+          <p class="reveal">
+            <strong
+              >Você entra com liberdade. Fica porque escolhe ficar.</strong
+            >
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ====== 11. CTA FINAL ====== -->
+    <section
+      class="section section--deep cta-final"
+      id="aplicacao"
+      aria-labelledby="cta-heading"
+    >
+      <div class="container">
+        <h2 id="cta-heading" class="reveal">
+          O diagnóstico que o seu paciente precisa<br />
+          já está dentro da sua capacidade.<br />
+          Falta só o método para ativá-lo.
+        </h2>
+        <p class="cta-final__sub reveal">
+          O Descomplexo Energético abre vagas em ciclos limitados. Se você
+          chegou até aqui, o próximo passo é dar o seu nome.
+        </p>
+        <div class="reveal">
+          <a href="#" class="btn btn--gold btn--gold-lg"
+            >Quero fazer minha aplicação</a
+          >
+          <p class="cta-final__micro">
+            Processo seletivo · Vagas limitadas · Mentoria por 6 meses
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== 12. FOOTER ====== -->
+    <footer class="footer" aria-label="Rodapé">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <span>Descomplexo Energético</span>
+          <span>Danucha Britto</span>
+        </div>
+        <nav
+          class="footer__social"
+          aria-label="Redes sociais de Danucha Britto"
+        >
+          <!-- Substitua os href="#" pelos links reais -->
+          <a href="#" aria-label="Instagram de Danucha Britto">
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.3"
+              aria-hidden="true"
+            >
+              <rect x="2" y="2" width="20" height="20" rx="5" />
+              <circle cx="12" cy="12" r="5" />
+              <circle
+                cx="17.5"
+                cy="6.5"
+                r="1"
+                fill="currentColor"
+                stroke="none"
+              />
+            </svg>
+          </a>
+          <a href="#" aria-label="YouTube de Danucha Britto">
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.3"
+              aria-hidden="true"
+            >
+              <path
+                d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"
+              />
+              <polygon
+                points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"
+                fill="currentColor"
+                stroke="none"
+              />
+            </svg>
+          </a>
+          <a href="#" aria-label="WhatsApp de Danucha Britto">
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.3"
+              aria-hidden="true"
+            >
+              <path
+                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+              />
+            </svg>
+          </a>
+        </nav>
+        <p class="footer__dev">
+          Arquitetura e design desta página por
+          <a
+            href="https://levymelo.netlify.app/#servicos"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Levy Melo · DEV de Sistemas</a
+          >
+        </p>
+      </div>
+      <p class="footer__copy">
+        © 2025 Danucha Britto · Todos os direitos reservados
+      </p>
+    </footer>
+
+    <!-- ====== JS ====== -->
+    <script>
+      /* ---- Scroll Reveal ---- */
+      const revealEls = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+      revealEls.forEach((el) => observer.observe(el));
+
+      /* ---- Tabs de Depoimentos ---- */
+      function switchTab(name) {
+        document.querySelectorAll(".tab-btn").forEach((b) => {
+          b.classList.remove("active");
+          b.setAttribute("aria-selected", "false");
+        });
+        document
+          .querySelectorAll(".tab-panel")
+          .forEach((p) => p.classList.remove("active"));
+        document.getElementById("btn-" + name).classList.add("active");
+        document
+          .getElementById("btn-" + name)
+          .setAttribute("aria-selected", "true");
+        document.getElementById("tab-" + name).classList.add("active");
+      }
+
+      /* ---- Modal de Vídeo ---- */
+      function openVideoModal(url) {
+        if (!url || url.startsWith("LINK_")) return;
+        const modal = document.getElementById("video-modal");
+        document.getElementById("video-iframe").src = url + "?autoplay=1";
+        modal.style.display = "flex";
+        document.body.style.overflow = "hidden";
+      }
+      function closeVideoModal() {
+        const modal = document.getElementById("video-modal");
+        document.getElementById("video-iframe").src = "";
+        modal.style.display = "none";
+        document.body.style.overflow = "";
+      }
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeVideoModal();
+      });
+      document.querySelectorAll(".testi-video-item").forEach((item) => {
+        item.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") item.click();
+        });
+      });
+    </script>
+  </body>
+</html>
